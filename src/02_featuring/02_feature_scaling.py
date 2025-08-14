@@ -9,6 +9,11 @@ from sklearn.preprocessing import StandardScaler
 
 df = pd.read_pickle("../data/interim/01_make_dataset.pkl")
 
+############################
+## Splitting dataset TRAIn & TEST dataset
+############################
+
+df.head()
 
 # matrix of feature / independent variable
 x = df.iloc[:, 1:-1].values
@@ -20,7 +25,7 @@ y.shape
 
 # Import sklearn(scikit-learn) for spliting data
 # into train and Test dataset
-sktt = train_test_split()
+sktt = train_test_split
 x_train, x_test, y_train, y_test = sktt(x, y, test_size=0.2, random_state=0)
 
 x_train.shape
@@ -33,7 +38,9 @@ y_test.shape
 y_test
 
 
+############################
 ## Feature Scaling
+############################
 
 sc = StandardScaler()
 x_train = sc.fit_transform(x_train)
