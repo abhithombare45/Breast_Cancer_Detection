@@ -2,9 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-# from sklearn.model_selection import train_test_split
-# from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
@@ -14,6 +11,7 @@ from sklearn.metrics import (
     recall_score,
 )
 from sklearn.model_selection import cross_val_score
+import joblib
 
 df = pd.read_pickle("../../data/interim/01_make_dataset.pkl")
 x_train = pd.read_pickle("../../data/interim/x_train.pkl")
@@ -50,6 +48,7 @@ result = pd.DataFrame(
 
 result
 
+# checking Confustion matrix 
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
 
@@ -63,3 +62,7 @@ print("Accuricy is {:.2f} %".format(accuracies.mean() * 100))
 # 97.81 %
 print("Std Deviation is {:.2f} %".format(accuracies.std() * 100))
 # 1.98 %
+
+pd.to_pickle(result, "../../data/interim/result_LR.pkl")
+# Save trained model, as we need this in hyperparameter estimation
+joblib.dump(classifier_lr, "./../../data/interim/classifier_lr_model.pkl")

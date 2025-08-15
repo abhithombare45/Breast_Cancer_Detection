@@ -41,6 +41,9 @@ print(result)
 result = pd.concat([result, model_result], ignore_index=True)
 print(result)
 
+pd.to_pickle(result, "../../data/interim/result_LR_RF.pkl")
+print(result)
+
 # checking Confustion matrix
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
@@ -56,3 +59,6 @@ print("Accuricy is {:.2f} %".format(accuracies.mean() * 100))
 # 97.81
 print("Std Deviation is {:.2f} %".format(accuracies.std() * 100))
 # 1.98 %
+
+# Loading modified Classifier data
+joblib.dump(classifier_rf, "./../../data/interim/classifier_rf_model.pkl")

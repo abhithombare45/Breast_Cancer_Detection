@@ -7,15 +7,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 
-df = pd.read_pickle("../data/interim/01_make_dataset.pkl")
+df = pd.read_pickle("../../data/interim/01_make_dataset.pkl")
+
+df.head()
 
 ############################
 ## Splitting dataset TRAIn & TEST dataset
 ############################
 
-df.head()
-
 # matrix of feature / independent variable
+
 x = df.iloc[:, 1:-1].values
 x.shape
 
@@ -48,3 +49,13 @@ x_test = sc.transform(x_test)
 
 x_train  # x_train.shape
 x_test  # x_test.shape
+
+
+############################
+## Exporting  Train & Test data
+############################
+
+pd.to_pickle(x_train, "../../data/interim/x_train.pkl")
+pd.to_pickle(x_test, "../../data/interim/x_test.pkl")
+pd.to_pickle(y_train, "../../data/interim/y_train.pkl")
+pd.to_pickle(y_test, "../../data/interim/y_test.pkl")
